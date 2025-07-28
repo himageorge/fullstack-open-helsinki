@@ -1,0 +1,6 @@
+PUT https://render-test-rh28.onrender.com/api/persons/688723af4af8b47cb22c552c
+Content-Type: application/json
+
+{
+    "name": "bob", "number": "3201569"
+}
