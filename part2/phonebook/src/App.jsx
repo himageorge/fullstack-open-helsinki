@@ -31,14 +31,12 @@ const App = () => {
       .then(returnedPerson =>{
         setPersons(persons.map(person => 
           person.name === newName? returnedPerson: person))
-      })
-      .then(message => {
-        setMessage(
-          `Changed ${personObject.name}'s number`
-        )
-        setTimeout(() => {
-          setMessage(null)
-        }, 5000)
+          setMessage(
+            `Changed ${personObject.name}'s number`
+          )
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
       })
       .catch(error => {
         setErrorMessage(

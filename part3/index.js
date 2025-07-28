@@ -49,27 +49,30 @@ app.get('/api/persons/:id', (request, response, next) => {
 })
 
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
     const body = request.body
     if(!body.name){
-        response.status(400).json({error :'name is missing'})
+        return response.status(400).json({error :'name is missing'})
     }
     if(!body.number){
-        response.status(400).json({error :'number is missing'})
+        return response.status(400).json({error :'number is missing'})
     }
     
     Person.findOne({name: body.name})
-    .then(existingPerson =>{
-      if(existingPerson){
-      return response.status(409).json({ error: 'name must be unique' })
-      }
+      .then(existingPerson =>{
+        if(existingPerson){
+        return response.status(409).json({ error: 'name must be unique' })
+        }
+
+      const person = new Person({name: body.name, number: body.number})      
+
+      person.save()
+        .then(savedPerson => {
+          response.json(savedPerson)
+        })
+        .catch((error) => next(error))
     })
 
-    const person = new Person({name: body.name, number: body.number})      
-
-    person.save().then(savedPerson => {
-      response.json(savedPerson)
-    })
   })
 
 app.put('/api/persons/:id',(request, response, next)=> {
@@ -109,5 +112,4 @@ const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
-
 
