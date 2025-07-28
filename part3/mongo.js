@@ -10,7 +10,7 @@ const password = process.argv[2]
 const url = `mongodb+srv://fullstack:${password}@cluster0.6lwsvdv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster`
 
 mongoose.set('strictQuery',false)
-                        
+
 mongoose.connect(url)
 
 const personSchema = new mongoose.Schema({
@@ -21,14 +21,13 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model('Person', personSchema)
 
-  Person.find({}).then(result => {
-    result.forEach(person =>{
-      console.log(`${person.name}${person.number}`)
-    })
-    mongoose.connection.close()
+Person.find({}).then(result => {
+  result.forEach(person => {
+    console.log(`${person.name}${person.number}`)
   })
+  mongoose.connection.close()
+})
 
 
 
 
-  
