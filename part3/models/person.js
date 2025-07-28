@@ -15,8 +15,20 @@ mongoose.connect(url)
 
 const personSchema = new mongoose.Schema({
   id: String,
-  name: String,
-  number: String
+  name: {
+    type: String,
+    required: true,
+    minLength: 3
+  },
+  number: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function(v){
+        return /\d{3}-\d{5}/.test(v) || /\d{2}-\d{6}/.test(v)
+      }
+    }
+  },
 })
 
 
