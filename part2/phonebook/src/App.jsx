@@ -38,12 +38,12 @@ const App = () => {
             setMessage(null)
           }, 5000)
       })
-      .catch(error => {
+      .catch(() => {
         setErrorMessage(
           `Information of ${personObject.name} has already been removed from the server`
         )
         setTimeout(() => {
-          setMessage(null)
+          setErrorMessage(null)
         }, 5000)
         setPersons(persons.filter(n => n.id !== updatedPerson.id))
       })
@@ -52,8 +52,6 @@ const App = () => {
       .create(personObject)
       .then(returnedPerson => {
         setPersons(persons.concat(returnedPerson))
-      })
-      .then(message => {
         setMessage(
           ` Added ${personObject.name}`
         )
@@ -61,10 +59,23 @@ const App = () => {
           setMessage(null)
         }, 5000)
       })
+      .catch((error) => {
+          console.error('Full error object from create:', error);
 
-    }
-    setNewName('')
-    setNewNumber('')
+          if (error.response && error.response.data && error.response.data.error) {
+            setErrorMessage(error.response.data.error)
+          } else if (error.message) {
+            setErrorMessage(`Network or client error: ${error.message}`)
+          } else {
+            setErrorMessage('An unexpected error occurred.')
+          }
+          setTimeout(() => {
+            setErrorMessage(null) 
+          }, 5000)
+        })
+      }
+      setNewName('')
+      setNewNumber('')
   }
   
 
