@@ -1,0 +1,6 @@
+POST https://blogtest-zxt9.onrender.com
+Content-Type: application/json
+
+{
+    "title":"Hello", "author":"Blob", "url":"ldld", "likes":3
+}
