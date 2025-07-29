@@ -9,7 +9,7 @@ blogsRouter.get('/', ( request, response, next) => {
     .catch(error => next(error))
 })
 
-blogsRouter.get('/id:', (request, response, next) => {
+blogsRouter.get('/:id', (request, response, next) => {
     Blog.findById(request.params.id)
         .then((blog)=> {
             if(blog){
