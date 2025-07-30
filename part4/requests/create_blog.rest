@@ -1,4 +1,4 @@
-POST https://blogtest-zxt9.onrender.com
+POST https://blogtest-b67m.onrender.com/api/blogs
 Content-Type: application/json
 
 {
