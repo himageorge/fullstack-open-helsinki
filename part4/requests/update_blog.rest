@@ -1,0 +1,5 @@
+PUT https://blogtest-b67m.onrender.com/api/blogs/6894ef6b1e9cb1f3d4578eca
+
+{
+    "title":"Web development", "likes": "5"
+}

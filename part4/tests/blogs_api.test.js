@@ -1,7 +1,8 @@
-const { test, after } = require('node: test')
+const { test, after, beforeEach } = require('node:test')
 const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../app')
+const Blog = require('../models/blog')
 
 const api = supertest(app)
 
@@ -19,8 +20,10 @@ test('a valid blog can be added', async() => {
         .expect('Content-Type', /application\/json/)
 })
 
-const response = await api.get('/api/blogs')
+// test(' a specific blog is returned within the blogs', async() => {
+//     const response = await api.get('/api/blogs')
 
+// })
 
 after(async() => {
     await mongoose.connection.close()

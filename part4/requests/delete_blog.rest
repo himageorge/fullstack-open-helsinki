@@ -1,1 +1,1 @@
-DELETE https://blogtest-b67m.onrender.com/api/blogs/6889b8ff29e09326809f19ae
+DELETE https://blogtest-b67m.onrender.com/api/blogs/6894a8dbc60c506165731ab8
