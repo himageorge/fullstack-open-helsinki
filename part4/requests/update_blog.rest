@@ -1,4 +1,4 @@
-PUT https://blogtest-b67m.onrender.com/api/blogs/6894ef6b1e9cb1f3d4578eca
+PUT https://blogtest-b67m.onrender.com/api/blogs/6889b96529e09326809f19b3 Content-Type: application/json
 
 {
     "title":"Web development", "likes": "5"
