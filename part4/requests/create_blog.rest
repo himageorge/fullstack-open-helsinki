@@ -2,5 +2,5 @@ POST https://blogtest-b67m.onrender.com/api/blogs
 Content-Type: application/json
 
 {
-    "title":"Hello World", "author":"weee", "url":"foo", "likes":3
+    "title":"This is weird", "author":"broom", "url":"foo", "likes":32
 }

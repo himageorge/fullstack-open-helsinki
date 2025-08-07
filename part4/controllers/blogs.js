@@ -1,5 +1,4 @@
 const blogsRouter = require('express').Router()
-const { title } = require('process')
 const Blog = require('../models/blog')
 
 blogsRouter.get('/', async (request, response) => {
@@ -9,7 +8,7 @@ blogsRouter.get('/', async (request, response) => {
 
 blogsRouter.get('/:id', async (request, response, next) => {
   const blogs = await Blog.findById(request.params.id)
-  if(blog){
+  if(blogs){
       response.json(blog)
   }else{
       response.status(404).end()
@@ -19,18 +18,19 @@ blogsRouter.get('/:id', async (request, response, next) => {
 blogsRouter.post('/', async(request, response, next) => {
   const body = request.body
 
-  const blog = new Blog({
-    title: body.title,
-    author: body.author,
-    url: body.url,
-    likes: body.likes,
-  })
+  try{
+    const blog = new Blog({
+      title: body.title,
+      author: body.author,
+      url: body.url,
+      likes: body.likes,
+    })
 
-  const savedBlog = await blog.save()
-    if(savedBlog){
-      response.status(201).json(savedBlog)
-    }else{
-      error => next(error)
+    const savedBlog = await blog.save()
+    response.status(201).json(savedBlog)
+
+  }catch(error){
+    next(error)
     }
 })
 
@@ -48,6 +48,7 @@ blogsRouter.delete('/:id', async(request, response, next) => {
     
 blogsRouter.put('/:id', async(request, response, next) => {
   const body = request.body
+  console.log('Request body:', body)
   try{
   const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, body, {new: true})
   if (updatedBlog) {
