@@ -1,6 +1,6 @@
-POST https://blogtest-b67m.onrender.com/api/blogs
+POST https://blogtest-b67m.onrender.com/api/blogs 
 Content-Type: application/json
 
 {
-    "title":"This is weird", "author":"broom", "url":"foo", "likes":32
+    "title":"boring", "author":"broom", "url":"foo", "likes":32
 }
